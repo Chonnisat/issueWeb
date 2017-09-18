@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { IssueService } from '../../shared/issue/issue.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-issue-list',
@@ -20,7 +21,7 @@ export class IssueListComponent implements OnInit {
   rowPerPage: number = 10;
   offset: number = 0;
   totalPage: number = 0;
-  imgUrl = "http://localhost:3000/api/v1/upload/viewImg/project/";
+  imgUrl = `${environment.remoteAPI}/api/v1/upload/viewImg/project/`;
   criteria = {
     issueProject : "",
     issueStatus : "O",
