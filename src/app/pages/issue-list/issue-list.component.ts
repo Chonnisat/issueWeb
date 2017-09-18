@@ -66,7 +66,7 @@ export class IssueListComponent implements OnInit {
   }
 
   onSearch() {
-    // $('.collapsible').collapsible('close', 0);
+    $('.collapsible').collapsible('close', 0);
     this.issueData = [];
     this.currentPage = 0;
     this.offset = 0;
