@@ -1,0 +1,47 @@
+<!-- header section -->
+<div class="">
+  <nav class="main-nav white">
+    <div class="nav-wrapper container">
+      <a routerLink="/login" class="brand-logo waves-effect waves-light">
+        <img src="/assets/pnp_logo.png" class="responsive-img logo">
+      </a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" materialize="sideNav" [materializeParams]="[{closeOnClick: true}]">
+        <i class="material-icons black-text">menu</i>
+      </a>
+      <!-- <ul class="right hide-on-med-and-down valign-wrapper main-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/login" class="blue-text text-darken-3">{{'public.login' | translate}}</a>
+        </li>
+      </ul> -->
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+<ul class="side-nav" id="mobile-demo">
+  <li routerLinkActive="active">
+    <a routerLink="/login" class="blue-text text-darken-3">{{'public.login' | translate}}</a>
+  </li>
+  <!-- <li routerLinkActive="active">
+    <a class="btn blue darken-3" (click)="changeLang();">{{currentLang}}</a>
+  </li> -->
+</ul>
+
+<div id="PNP_LOAD_MASK" style="display: none">
+  <div id="dimmer">
+      <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                  <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                  <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                  <div class="circle"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

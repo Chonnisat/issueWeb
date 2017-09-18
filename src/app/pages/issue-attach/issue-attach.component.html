@@ -1,0 +1,38 @@
+<div class="container">
+  
+    <form>
+      <div class="row">
+        <div class="col s12 m10 file-field input-field">
+          <div class="btn blue darken-3">
+            <span>File</span>
+            <input type="file" name="attach" (change)="fileChangeEvent($event);">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <button class="col s12  m2 btn blue darken-3" (click)="upload();">Attach</button>
+      </div>
+    </form>
+  
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h4>Attach File</h4>
+      </li>
+      <li class="collection-item" *ngFor="let f of fileData">
+        <div>
+          <a class="waves-effect" (click)="removeFile(f);">
+              <i class="material-icons left red-text">delete</i>
+          </a>
+          {{f}}
+          <a class="secondary-content waves-effect" (click)="viewFile(f);">
+              <i class="material-icons right">send</i>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row">
+      <button class="col s12  m2 offset-m5 btn blue darken-3" (click)="onBack();">Back</button>
+    </div>
+  </div>

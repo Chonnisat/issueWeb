@@ -1,0 +1,39 @@
+<div class="">
+  <nav class="main-nav white">
+    <div class="nav-wrapper container">
+      <a routerLink="/login" class="brand-logo waves-effect waves-light">
+        <img src="/assets/pnp_logo.png" class="responsive-img logo">
+      </a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" materialize="sideNav" [materializeParams]="[{closeOnClick: true}]">
+        <i class="material-icons black-text">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down valign-wrapper main-menu">
+        <li routerLinkActive="active">
+          <a routerLink="/admin/issue-list" class="blue-text text-darken-3">Issue</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/admin/project" class="blue-text text-darken-3">Project</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/admin/pic" class="blue-text text-darken-3">PIC</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+<ul class="side-nav" id="mobile-demo">
+  <ul class="right hide-on-med-and-down valign-wrapper main-menu">
+    <li routerLinkActive="active">
+      <a routerLink="/admin/issue-list" class="blue-text text-darken-3">Issue</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/project" class="blue-text text-darken-3">Project</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/pic" class="blue-text text-darken-3">PIC</a>
+    </li>
+</ul>
+</ul>

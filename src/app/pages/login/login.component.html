@@ -1,0 +1,21 @@
+<div class="container login-box">
+  <form (ngSubmit)="doLogin()" ngNativeValidate materialize>
+    <div class="row login-box">
+      <div class="input-field col s12 m6 offset-m3">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="userCode" name="userCode" [(ngModel)]="user.userCode" required="required" type="text" class="validate" [placeholder]="'login.user-placeholder' | translate">
+        <label for="userCode">{{'login.userCode' | translate}}</label>
+      </div>
+      <div class="input-field col s12 m6 offset-m3">
+        <i class="material-icons prefix">lock</i>
+        <input id="userPwd" name="userPwd" [(ngModel)]="user.userPwd" required="required"
+              type="password" class="validate" [placeholder]="'login.password-placeholder' | translate ">
+        <label for="userPwd">{{ 'login.password' | translate }}</label>
+      </div>
+      <button type="submit" class="col s10 offset-s1 m4 offset-m4 btn blue darken-3" >{{ 'login.login-button' | translate}}</button>
+    </div>
+  </form>
+</div>
+
+
+{{user | json}}

@@ -1,0 +1,106 @@
+<div class="container">
+  <form (ngSubmit)="onSave()" materialize ngNativeValidate>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="row">
+
+          <div class="input-field col s12 m6">
+            <select [(ngModel)]="issue.issueProject" name="issueProject" materialize="material_select" [materializeSelectOptions]="projectList" (change)="onProjectChange();">
+              <option value="" disabled selected [ngValue]="">Choose your project</option>
+              <option *ngFor="let item of projectList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+            </select>
+            <label>Project</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <input name="issueDate" [(ngModel)]="issue.issueDate" type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]" required>
+            <label>Issue Date</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <input type="text" id="issueBy" [(ngModel)]="issue.issueBy" name="issueBy"
+              data-activates='dropdown-issueBy' materialize="dropdown" [materializeParams]="[{hover: false, belowOrigin: true}]" required>
+            <label>Issue By</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <select [(ngModel)]="issue.issueType" name="issueType" materialize="material_select" [materializeSelectOptions]="typeList">
+              <option value="" disabled selected [ngValue]="">Choose your type</option>
+              <option *ngFor="let item of typeList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+            </select>
+            <label>Type</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <select [(ngModel)]="issue.issuePriority" name="issuePriority"  materialize="material_select" [materializeSelectOptions]="priorityList">
+              <option value="" disabled selected [ngValue]="">Choose your priority</option>
+              <option *ngFor="let item of priorityList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+            </select>
+            <label>Priority</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <select [(ngModel)]="issue.issueStatus" name="issueStatus" materialize="material_select" [materializeSelectOptions]="statusList">
+              <option value="" disabled selected [ngValue]="">Choose your status</option>
+              <option *ngFor="let item of statusList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+            </select>
+            <label>Status</label>
+          </div>
+
+          <div class="input-field col s12">
+            <select [(ngModel)]="issue.issuePic" name="issuePic" materialize="material_select" [materializeSelectOptions]="picList">
+              <option value="" disabled selected [ngValue]="">Choose your PIC</option>
+              <option *ngFor="let item of picList" [ngValue]="item.itemValue">{{item.itemDesc}}</option>
+            </select>
+            <label>PIC</label>
+          </div>
+          
+          <div class="input-field col s12 m6">
+            <input name="issueTarget" [(ngModel)]="issue.issueTarget" type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]">
+            <label>Target Date</label>
+          </div>
+
+          <div class="input-field col s12 m6">
+            <input name="issueClosed" [(ngModel)]="issue.issueClosed" type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]">
+            <label>Close Date</label>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="row">
+
+          <div class="input-field col s12">
+            <input id="issueModule" name="issueModule" [(ngModel)]="issue.issueModule"  type="text" class="validate" required>
+            <label for="issueModule">Module</label>
+          </div>
+
+          <div class="input-field col s12">
+            <textarea id="issueDesc" name="issueDesc" [(ngModel)]="issue.issueDesc" class="materialize-textarea" data-length="500" materialize="characterCounter" required></textarea>
+            <label for="issueDesc">Description</label>
+          </div>
+
+          <div class="input-field col s12">
+              <textarea id="issueSolution" name="issueSolution" [(ngModel)]="issue.issueSolution" class="materialize-textarea" data-length="500" materialize="characterCounter"></textarea>
+              <label for="issueSolution">Solution</label>
+          </div>
+
+        </div>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col s6">
+        <a class="btn col s12 m6 l2  blue darken-3 right" (click)="onBack()">Back</a>
+      </div>
+      <div class="col s6">
+        <!-- <a class="btn col s12 m6 l2  blue darken-3 left" (click)="onSave()">Save</a> -->
+        <button type="submit" class="btn col s12 m6 l2  blue darken-3 left" >Save</button>
+      </div>
+    </div>
+  </form>
+</div>  
+
+<ul id='dropdown-issueBy' class='dropdown-content'>
+  <li *ngFor="let item of issueByList"><a (click)="setIssueBy(item.issueBy)">{{item.issueBy}}</a></li>
+</ul>
+      
+<!-- {{ issue | json}} -->

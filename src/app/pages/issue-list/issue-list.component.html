@@ -1,0 +1,166 @@
+<!-- <nav class="navwidth">
+  <div class="nav-wrapper blue-grey darken-3">
+    <form>
+      <div class="input-field ">
+        <input id="search" name="search" type="search" [(ngModel)]="searchText" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons" (click)="onSearch()">find_in_page</i>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Issue Id</th>
+      <th>Issue Date</th>
+      <th>Project</th>
+      <th>Description</th>
+      <th>PIC</th>
+      <th>Status</th>
+      <th>Attach</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let issue of issueData; let i=index;">
+      <td>
+        <a class="btn-floating btn-medium waves-effect waves-light yellow" (click)="onEditbtnClick(issue.issueId)">
+          <i class="material-icons">edit</i>
+        </a>
+      </td>
+      <td>{{issue.issueId}}</td>
+      <td>{{issue.issueDate}}</td>
+      <td>{{issue.issueProject}}</td>
+      <td>{{issue.issueDesc}}</td>
+      <td>{{issue.issuePicDesc}}</td>
+      <td>{{issue.issueStatusDesc}}</td>
+      <td>
+        <a class="btn-floating btn-medium waves-effect waves-light green" (click)="onAttachbtnClick(issue.issueId);" >
+          <i class="material-icons">attach_file</i>
+        </a>
+      </td>
+      <td>
+        <a class="btn-floating btn-medium waves-effect waves-light red" (click)="onDelbtnClick(issue.issueId)">
+          <i class="material-icons">delete</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+<!-- <ul class="pagination">
+  <li [ngClass]="{'disabled': numPage == 0, 'waves-effect': numPage != 0}"><a (click)="(numPage == 0) ? null : gotoPage(0);"><i class="material-icons">first_page</i></a></li>
+  <li [ngClass]="{'disabled': numPage == 0, 'waves-effect': numPage != 0}"><a (click)="(numPage == 0) ? null : gotoPage((numPage-1));"><i class="material-icons">chevron_left</i></a></li>
+  <li class="waves-effect" *ngFor="let p of paging;" [ngClass]="{'active':p==(numPage+1)}" (click)="gotoPage((p-1));"><a>{{p}}</a></li>
+  <li [ngClass]="{'disabled': (numPage+1) == totalPage, 'waves-effect': (numPage+1) != totalPage}"><a (click)="((numPage+1) == totalPage) ? null : gotoPage((numPage+1));"><i class="material-icons">chevron_right</i></a></li>
+  <li [ngClass]="{'disabled': (numPage+1) == totalPage, 'waves-effect': (numPage+1) != totalPage}"><a (click)="((numPage+1) == totalPage) ? null : gotoPage(totalPage-1);"><i class="material-icons">last_page</i></a></li>
+</ul>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn right" (click)="onAddbtnClick()"><i class="material-icons">add</i></a>
+</div>
+-->
+
+<div class="container">
+  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header" st-raw>Search Criteria. {{criteria | json : spacing}}</div>
+      <div class="collapsible-body">
+          <form>
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input id="issueId" name="issueId" [(ngModel)]="criteria.issueId"  type="text">
+                <label for="issueId">Issue Id</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <select [(ngModel)]="criteria.issueProject" name="issueProject" materialize="material_select" [materializeSelectOptions]="projectList">
+                  <option value="" selected [ngValue]="">Choose your project</option>
+                  <option *ngFor="let item of projectList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+                </select>
+                <label>Project</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <input id="issueModule" name="issueModule" [(ngModel)]="criteria.issueModule"  type="text">
+                <label for="issueModule">Module</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <input id="issueDesc" name="issueDesc" [(ngModel)]="criteria.issueDesc"  type="text">
+                <label for="issueDesc">Description</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <select [(ngModel)]="criteria.issueStatus" name="issueStatus" materialize="material_select" [materializeSelectOptions]="statusList">
+                  <option value="" selected [ngValue]="">Choose your status</option>
+                  <option *ngFor="let item of statusList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+                </select>
+                <label>Status</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <select [(ngModel)]="criteria.issuePriority" name="issuePriority"  materialize="material_select" [materializeSelectOptions]="priorityList">
+                  <option value="" selected [ngValue]="">Choose your priority</option>
+                  <option *ngFor="let item of priorityList" [ngValue]="item.itemCode">{{item.itemDesc}}</option>
+                </select>
+                <label>Priority</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <input name="issueClosed" [(ngModel)]="criteria.issueClosed" type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{closeOnSelect: true, format: 'dd/mm/yyyy'}]">
+                <label>Close Date</label>
+              </div>
+
+              <div class="input-field col s12">
+                <select [(ngModel)]="criteria.issuePic" name="issuePic" materialize="material_select" [materializeSelectOptions]="picList">
+                  <option value="" selected [ngValue]="">Choose your PIC</option>
+                  <option *ngFor="let item of picList" [ngValue]="item.itemValue">{{item.itemDesc}}</option>
+                </select>
+                <label>PIC</label>
+              </div>
+
+              <button type="submit" class="col s12  m2 offset-m5 btn blue darken-3" (click)="onSearch();">Search</button>
+
+            </div>
+          </form>
+      </div>
+    </li>
+  </ul>
+        
+  <div class="row">
+    <div class="col s12 m4" *ngFor="let issue of issueData">
+      <div class="card sticky-action">
+        <div class="card-image center-align valign-wrapper" style="height:250px;">
+          <img [src]="imgUrl+issue.issueProject+'/'+issue.issueProjectImg">
+          <a (click)="onEditbtnClick(issue.issueId)" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow">
+            <i class="material-icons">edit</i>
+          </a>
+        </div>
+        <div class="card-content" style="height: 92px;">
+          <span class="card-title truncate activator grey-text text-darken-4 title-font">Issue {{issue.issueId}} : {{issue.issueDesc}}<i class="material-icons right">more_vert</i></span>
+        </div>
+        <div class="card-action">
+          <a (click)="onDelbtnClick(issue.issueId)" class="waves-effect waves-light">
+            <i class="material-icons left">delete</i>Remove
+          </a>
+          <a (click)="onAttachbtnClick(issue.issueId)" class="waves-effect waves-light blue-text text-darken-4">
+            <i class="material-icons left">attach_file</i>Attach
+          </a>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+          <p>Issue {{issue.issueId}} : {{issue.issueDesc}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100" (scrolled)="onLoadData()"></div>
+  </div>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large green darken-2" (click)="onAddbtnClick()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+</div>
