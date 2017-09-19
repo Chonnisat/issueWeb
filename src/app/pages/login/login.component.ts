@@ -72,4 +72,12 @@ export class LoginComponent implements OnInit {
   alertMsg() {
     Materialize.toast(`${this.data.msg}.`, 4000, '', function () { });
   }
+
+  get userName(): string {
+    let userName = '';
+    if (isPlatformBrowser(this._platformId)) {
+      userName = localStorage.getItem('userName');
+    }
+    return userName;
+  }
 }

@@ -40,6 +40,7 @@ export class UserService {
         if (res.success) {
           if (isPlatformBrowser(this._platformId)) {
             localStorage.setItem('auth_token', res.token);
+            localStorage.setItem('userName', res.userName);
           }
           this.loggedIn = true;
         }
@@ -51,6 +52,7 @@ export class UserService {
   logout() {
     if (isPlatformBrowser(this._platformId)) {
       localStorage.removeItem('auth_token');
+      localStorage.removeItem('userName');
     }
     this.loggedIn = false;
   }

@@ -1,5 +1,5 @@
 <div class="container login-box">
-  <form (ngSubmit)="doLogin()" ngNativeValidate materialize>
+  <form (ngSubmit)="doLogin()" *ngIf="!isLogedIn" ngNativeValidate materialize>
     <div class="row login-box">
       <div class="input-field col s12 m6 offset-m3">
         <i class="material-icons prefix">account_circle</i>
@@ -15,6 +15,24 @@
       <button type="submit" class="col s10 offset-s1 m4 offset-m4 btn blue darken-3" >{{ 'login.login-button' | translate}}</button>
     </div>
   </form>
+  <div class="col s12" *ngIf="isLogedIn">
+      <div class="row">
+        <div class="col s12 center">
+          <i *ngIf="!userImage" class="material-icons login-icon-large red-text text-accent-1">account_circle</i>
+          <h5>{{userName}}</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s10 offset-s1">
+          <div class="collection no-border">
+            <a routerLink="/admin/issue-list" class="collection-item no-border">Issue</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+         <button class="btn col offset-s1 s10 m4 offset-m4 waves-effect waves-light blue darken-3" (click)="logout()">Logout</button>
+      </div>
+    </div>
 </div>
 
 
