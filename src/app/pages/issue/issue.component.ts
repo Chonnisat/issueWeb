@@ -110,6 +110,10 @@ export class IssueComponent implements OnInit {
       issue => {
         this.issue = issue[0];
         this.onloadIssueBy();
+        setTimeout(() => {
+          $('#issueDesc').trigger('autoresize');
+          $('#issueSolution').trigger('autoresize');
+        }, 0);
       },
       err => {
         console.log(err);

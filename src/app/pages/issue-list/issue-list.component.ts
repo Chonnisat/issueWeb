@@ -21,6 +21,7 @@ export class IssueListComponent implements OnInit {
   rowPerPage: number = 10;
   offset: number = 0;
   totalPage: number = 0;
+  totalCount: number = 0;
   imgUrl = `${environment.remoteAPI}/api/v1/upload/viewImg/project/`;
   criteria = {
     issueProject : "",
@@ -58,7 +59,6 @@ export class IssueListComponent implements OnInit {
     this.issueService.deleteItem(id).subscribe(
       datas => {
         Materialize.toast('Delete data Complete', 3000);
-        this.onSearch();
         this.onSearch();
       },
       err => {
@@ -98,6 +98,7 @@ export class IssueListComponent implements OnInit {
         this.offset = paging_data.offset;
         this.currentPage = paging_data.current_page;
         this.totalPage = paging_data.total_page;
+        this.totalCount = paging_data.total_count;
       }, error => {
         console.log(error);
       }
